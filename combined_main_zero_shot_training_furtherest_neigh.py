@@ -15,6 +15,40 @@ from torch.autograd import Variable
 import pdb
 from Devise_ver4 import Custom_devise_loss
 
+# Devise constants
+UNSEEN_CLASSES = [3,8,11,16,51]
+DIM_STGCN = 256
+DIM_LANGAUGE = 700
+MARGIN = 0.1
+N_EPOCH = 200
+NO_CLASS = 60
+BATCH_SIZE = 64
+LR = 0.001
+MOMENTUN = 0.9
+
+NORMALIZE_VIS = True
+NORMALIZE_EMB = True
+
+LANG_EMB_RANDOM = False
+
+
+
+print('############################')
+print('############################')
+print('############################')
+print('############################')
+print('LANGUAGE_EMBEDDING_RANDOM: ', LANG_EMB_RANDOM)
+print('############################')
+print('############################')
+print('############################')
+print('############################')
+
+langauge_embeddings = np.load(FEATURE_DIR+LANGUAGE_EMBEDDING_NAME)
+
+if LANG_EMB_RANDOM == True:
+	langauge_embeddings = np.random.random(langauge_embeddings.shape)
+
+
 def get_parser():
 
     # parameter priority: command line > config > default
@@ -408,6 +442,11 @@ def import_class(name):
     for comp in components[1:]:
         mod = getattr(mod, comp)
     return mod
+
+#def devise():
+    
+    
+    
 
 
 if __name__ == '__main__':
