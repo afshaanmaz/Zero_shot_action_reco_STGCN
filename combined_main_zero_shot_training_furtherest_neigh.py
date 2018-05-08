@@ -13,6 +13,7 @@ import torch.nn as nn
 import torch.optim as optim
 from torch.autograd import Variable
 import pdb
+from Devise_ver4 import Custom_devise_loss
 
 def get_parser():
 
@@ -177,6 +178,7 @@ class Processor():
         Model = import_class(self.arg.model)
         self.model = Model(**self.arg.model_args).cuda(output_device)
         self.loss = nn.CrossEntropyLoss().cuda(output_device)
+        #self.loss = Custom_devise_loss().cuda(output_device)
 
         if self.arg.weights:
             self.print_log('Load weights from {}.'.format(self.arg.weights))
