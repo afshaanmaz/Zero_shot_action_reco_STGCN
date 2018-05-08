@@ -170,6 +170,13 @@ class Model(nn.Module):
 
         feat_256d = x    # shape is batch_sizex256x1
         self.feat_256d = x
+        
+        ############ COMBINE DEVISE ###########
+        #y = self.fc_devise(feat_256d)
+        
+        #print("Size after DeViSE", y.size())
+        
+        #TODO: May need to reshape to N, out)
 
         # C fcn
         x = self.fcn(x)
@@ -178,6 +185,8 @@ class Model(nn.Module):
 
         # print(feat_256d)
         # pdb.set_trace()
+        
+        #return y
 
         return x
 
